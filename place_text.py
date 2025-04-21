@@ -110,7 +110,7 @@ def _draw_text(draw, text, position, font_name, font_size, font_color, align):
         if os.path.exists(os.path.join("fonts", font_name))
         else font_name
     )
-    font = ImageFont.truetype(font_path, font_size, layout_engine=0)
+    font = ImageFont.truetype(font_path, font_size, layout_engine=1)
     
     # Convert hex color to RGB tuple
     if font_color.startswith("#"):

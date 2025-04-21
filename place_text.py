@@ -48,7 +48,7 @@ def place_text_on_image_object(
     font_name=None,
     font_size=None,
     font_color=None,
-    align="right",
+    align="left",
 ):
     """
     Place text on a PIL Image object without file I/O operations.
@@ -73,7 +73,7 @@ def place_text_on_image_object(
     default_font_name = "Mali-Bold.ttf"
     default_font_size = 12
     default_font_color = "#3C4658"
-    default_align = "right"
+    default_align = "left"
     
     # Check if text is a list of tuples (new format)
     if isinstance(text, list) and text and isinstance(text[0], (tuple, list)):
@@ -110,7 +110,7 @@ def _draw_text(draw, text, position, font_name, font_size, font_color, align):
         if os.path.exists(os.path.join("fonts", font_name))
         else font_name
     )
-    font = ImageFont.truetype(font_path, font_size)
+    font = ImageFont.truetype(font_path, font_size, layout_engine=0)
     
     # Convert hex color to RGB tuple
     if font_color.startswith("#"):
@@ -132,7 +132,7 @@ def _draw_text(draw, text, position, font_name, font_size, font_color, align):
     x, y = position
     if align == "center":
         x -= text_width // 2
-    elif align == "left":
+    elif align == "right":
         x -= text_width
     
     # Draw the text on the image
